@@ -1,0 +1,633 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+body{
+    background-color: #fffbf4;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.Header{
+    width: 100%;
+    padding: 20px;
+    top: 0;        /* صمّام الأمان: يجبر الهيدر يلتصق بأعلى الشاشة غصب عنه */
+    left: 0;       /* يمنع أي تحرك من اليسار */
+    right: 0;
+    
+   
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    position: fixed;
+    background-color: #fffbf4;
+    z-index: 22;
+
+    
+}
+.Logo img{
+  width: 40px;
+}
+.Logo{
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: fit-content;
+}
+
+.content{
+  width: 20%;
+  display: flex; 
+
+
+
+}
+.content nav{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  
+ 
+
+  
+}
+.content a {
+    text-decoration: none;
+    color: black;
+    transition: 0.2s;
+    display: inline-block;
+    padding: 0px 15px;
+}
+.content a:hover{
+  
+}
+#line{
+  height:2px; background:black ;width:0px;
+  transition: 0.3s ease;
+
+}
+#library:hover #line{
+  width: 100%;
+}
+
+
+
+.Logout button{
+  padding: 7px 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: solid 1px;
+  font-weight: 500;
+  background-color: rgb(0, 0, 0);
+  color: white;
+
+
+}
+#userbox{
+  display:flex;
+  flex-direction:column;
+  transform: translate(-50%, -50%);
+  height:70%;
+  width: 30%;
+  background:#ffffff;
+  position:fixed;
+  top:50%;
+  left:45%;
+  border:solid 1px #6d5526;
+  
+}
+/* end of header */
+
+
+
+
+
+
+
+
+
+.Menu {
+ 
+  cursor: pointer;
+  background: none;    
+  border: none;        
+  padding: 10px;          
+  
+  
+    background-color: #fffbf4;
+}
+
+/* الخطوط الثلاثة داخل زر المنيو */
+.Menu div {
+width: 24px;
+height: 3px;
+margin: 3px;
+border-radius: 3px;
+background-color: black;
+transition: 0.3s ease; /* جاهزة لو حبيت تعمل أنيميشن مستقبلاً */
+}
+
+/* 3. القائمة المنسدلة العائمة (side) */
+.side {
+  position: absolute;
+  top: 30px;             /* تنزل تحت الخطوط بمسافة جمالية خفيفة */
+  left: 0;             
+  z-index: 100;          /* أعلى من الكروت و MainCard عشان تظهر فوقهم دايماً */
+  background-color: #ffecc5;
+  height: auto;          /* خليته auto عشان يلتف على قد العناصر بالظبط وما يفضلش فاضي من تحت */
+  min-height: 200px;     /* أقل ارتفاع مسموح */
+  width: 240px;          /* عرض مناسب للمنيو الجانبية */
+  border-radius: 12px;   /* حواف دائرية تتماشى مع كروت الموقع */
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.12); /* ظل ناعم يعطي إيحاء بالعمق فوق الصفحة */
+  overflow: hidden;      /* عشان حواف الـ li الرمادية ما تطلعش برة تدويرة الـ side */
+  text-decoration: none;
+  
+  
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 4. تصفير الـ ul وإلغاء مسافات المتصفح التلقائية */
+.side ul {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  list-style: none;      /* أمان إضافي لإلغاء النقط */
+}
+
+/* 5. تنسيق الروابط والعناصر داخل الـ li والتحكم بالتكست */
+.side li {
+  padding: 15px 25px;    /* 15px فوق وتحت، و 25px مسافة أمان من اليسار عشان النص ما يلزقش */
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  cursor: pointer;
+  width: 100%;
+  background-color: transparent; /* خلفية شفافة في الحالة العادية */
+  box-sizing: border-box;        /* تضمن إن الـ padding ما يخربش العرض */
+  transition: all 0.2s ease;     /* حركة ناعمة عند التفاعل */
+  text-align: start;             /* يبدأ النص من اليسار بشكل منظم */
+  border-bottom: solid 1px rgba(0, 0, 0, 0.04); /* خط فاصل خفيف جداً بين الخيارات */
+  
+}
+
+/* تأثير الـ Hover الاحترافي لما يمر الماوس فوق الخيارات */
+.side li:hover {
+  background-color: #064e3b;     /* نفس اللون الزيتي الفخم بتاع الـ MainCard */
+  color: #dcfce7;                /* لون خط فاتح ومريح مناسب للزيتي */
+  padding-left: 32px;            /* حركة إزاحة خفيفة لليمين تعطي إحساس بالتفاعل */
+}
+
+
+
+
+
+
+ .Cards{
+  /* background-color: aqua; */
+  width: 90%;
+  margin: auto;
+  /* height: 100%; */
+  display: flex;
+  align-items: stretch;
+  
+  padding: 5px;
+  margin-top: 10px;
+ }
+.Card{
+  
+  flex: 2;
+  /* background-color: rgb(53, 98, 53); */
+  border-radius: 15px;
+  
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start; 
+  position: relative;
+  padding: 0px 10px 30px 10px;
+  
+}
+
+.CardDiv{
+  min-height: 300px;
+  min-width: 350px;
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 10px;
+  border: solid 1px rgb(201, 201, 201);
+  
+
+}
+.CardDiv.active-border{
+  border: solid 1px rgb(36, 149, 255);
+}
+.AllCards{
+    padding: 15px;
+  flex-grow: 1;
+
+}
+.info{
+  display: flex;
+  flex-grow: 0.1;
+  width: 100%;
+  /* padding: 40px 0px 0px 20px; */
+  display: flex;
+
+}
+.foto{
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+overflow: hidden;  
+
+}
+.foto img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+.content{
+  text-align: start;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+
+  
+}
+
+
+
+
+.Vid{
+  width: 100%;
+  flex-grow:0;
+  height: 140px;
+  background-color: #e7e4dedb;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+  padding: 0px;
+  
+}
+
+
+.bigfoto{
+    object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+
+}
+.Vid button{
+  background-color: #ffd47f;
+  width: 65px;
+  height: 65px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 30px;
+  position: absolute;
+  transition: 0.2s ease;
+  
+}
+.Vid button:hover{
+  background-color: #064e3b;
+  color:#ffd47f
+
+}
+.foter{
+  flex-grow: 0.01;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  gap: 10px;
+  border-top: solid 1px gray;
+
+}
+.fixed-pagination{
+ 
+  background-color: rgba(255, 255, 255, 0.95); /* خلفية بيضاء شبه شفافة */
+  
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* ظل خفيف */
+  height: fit-content;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;            /* يلصقه في أسفل الديف الأب تماماً */
+  left: 50%;            /* يدفعه لمنتصف الديف الأب */
+  transform: translateX(-50%); /* يضمن التوسط بدقة 100% في المنتصف */
+  display: flex;
+  gap: 10px;
+  
+}
+.fixed-pagination button{
+  background-color: #064e3b;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.foter button{
+  font-size: 25px;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding-top: 10px;
+  
+
+}
+
+
+.MainCard{
+  flex: 1;
+  min-height: 600px;
+  min-width: 300px;
+  border-radius: 15px;
+  background-color: #064e3b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 20px;
+  align-content: start;
+}
+.firstbox{
+  display: flex;
+  width: 100%;
+
+  align-items: center;
+}
+.foto2{
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+overflow: hidden;  
+
+}
+.foto2 img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+.content2{
+  color: #8df1a2;
+  height: 100%;
+  padding: 10;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+ 
+
+}
+.content2 p{
+    color: #62a971;
+}
+
+
+.MainCardBox{
+  min-height: 200px;
+  padding-bottom: 10px;
+  width: 80%;
+  margin: auto;
+  border-radius: 15px;
+  background-color: #0c644d;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+    transition: height 0.3s ease;
+    transition: width 0.3s ease;
+
+}
+.MainCardBox.active {
+    width: 95%;
+
+
+}
+.manager1{
+  display: flex;
+  color: #dcfce7;
+  font-weight: 500;
+  justify-content: space-between;
+}
+.manager1 button{
+border: none;
+background: none;
+font-size: 30px;
+  color: #dcfce7;
+  padding: 0px 20px;
+
+
+}
+
+.manager2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  transition: height 0.3s ease;
+  transition: width 0.3s ease;
+
+}
+
+.manager2 button{
+  background: none;
+  width: fit-content;
+  margin: 0px;
+  border: none;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MainCardSmallBox{
+  display: flex;
+  height: 80px;
+  width: 80%;
+  border-radius: 15px;
+  background-color: #dcfce7;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  transition: height 0.3s ease;
+  
+}
+.MainCardSmallBox.active {
+  height: 250px;
+    width: 95%;
+
+
+}
+
+
+
+.MainCardBoxContent{
+  padding: 20px;
+  width: fit-content;
+  height: fit-content;
+
+}
+
+
+#Myimg{
+  color: #064e3b;
+  border: solid 1px #064e3b;
+  border-radius: 15px;
+  font-size: 11px;
+  padding: 5px 8px;
+  font-weight: 600;
+  display: inline-block;
+  /* margin-top: 10px; */
+  cursor: pointer;
+  transition: 0.2s;
+  
+}
+#Myaud{
+  
+  color: #8d6008;
+  border-radius: 15px;
+  font-size: 11px;
+  padding: 5px 8px;
+  font-weight: 600;
+  display: inline-block;
+  /* margin-top: 10px; */
+  cursor: pointer;
+  transition: 0.2s;
+  border: solid 1px #8d6008;
+  
+}
+
+#add{
+  margin-left: 10px;
+  font-size: 11px;
+  padding: 5px 8px;
+  font-weight: 600;
+  color: black;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: solid 1px black;
+  
+}
+
+
+#plus{
+  background-color: rgb(236, 236, 236);
+  width: 50px;
+  
+  
+  border-radius: 100px;
+  padding: 10px;
+  font-size: 15px;
+  color: black;
+  cursor: pointer;
+  border: solid 1px black;
+  
+  transition: 0.2s ease;
+}
+#plus:hover{
+  background-color: #064e3b;
+  color: #8df1a2;
+  border: solid 1px #064e3b;
+  width: 80px;
+
+}
+.AddCardForm{
+  width: 90%;
+  margin: auto;
+  padding: 20px 0px 0px 0px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+}
+input{
+  padding: 0px 0px;
+}
+
+
+.playaudio.active{
+  cursor: pointer;
+}
+
+
+#range1[type="range"]{
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 0px;
+
+  appearance: none;
+  cursor: pointer;
+  border-radius: 30px;
+  height: 6px;
+    width: 100%;
+  padding: 0px;
+  height: 6px;
+  border-radius: 15px;
+background: linear-gradient(to right, black 0%, black var(--value, 0%), #e4e4e4 var(--value, 0%), #e4e4e4 100%);  border-radius: 15px;
+outline: none;
+}
+ #range1[type="range"]::-webkit-slider-runnable-track{
+  /* width: 100%; */
+  padding: 0px;
+  /* height: 6px; */
+  /* border-radius: 15px; */
+/* background: linear-gradient(to right, black 0%, black var(--value, 0%), #e4e4e4 var(--value, 0%), #e4e4e4 100%);  border-radius: 15px; */
+outline: none;
+}
+#range1[type="range"]::-webkit-slider-thumb{
+-webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
+  background: transparent;
+  border: none;
+  width: fit-content;
+}
+#outBox{
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+#outBox:hover{
+    background-color: #f7f9fa;
+    transform: translateX(2px);
+}

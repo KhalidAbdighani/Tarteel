@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register page</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="icon" href="img/tarteel3.png?v=2">
+</head>
+<body>
+
+    <section id="mainS">
+
+
+<!--                section 1               -->
+
+        <section class="imageS">
+            
+            <div id="logodiv"><img src="img/tarteel3.png" alt="" id="logo"></div>
+
+            
+
+
+        </section>
+
+<!--                section 2               -->
+
+        <section class="infoS">
+            <div class="container">
+
+                <h3>Sign Up To Tarteel</h3>
+                <form action="/register" class="formm" method="POST">
+                    <input type="text" name="First" id="namebox" required placeholder="First Name" >
+                    <input type="text" name="Last" id="lastbox"required placeholder="Last Name">
+                    <input type="email" name="text" id="emailbox" required placeholder="Email">
+                    <input type="password" name="password" id="pssbox" required placeholder="password" >
+                    <input type="submit" name="" id="Submit">
+                    <p>or</p>
+                </form>
+                    <a href="/login" id="login">Log In</a>
+           </div>
+
+       </section>
+
+    </section>
+   
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="register.js"></script>
+</html>

@@ -1,0 +1,98 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box
+    
+}
+
+.main{
+    background-color:#fdefd7 ;
+    height: 100VH;
+}
+.header2{
+    background-color: #ffdf9e;
+}
+
+.chars {
+    
+    padding: 10px;
+    border-radius: 10px;
+    /* border: solid 1px darkgreen; */
+    color: #ffb013;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.chars:hover{
+    background-color: rgba(255, 255, 255, 0.597);
+    color: #8d6008;
+}
+.your-states{
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff2dd;
+    border: solid 1px darkgreen;
+
+}
+.setting-main{
+    background-color: #ffdf9e;
+}
+
+/* user page ================================= */
+.bigbox{
+    display:flex;
+    flex-Direction:column;
+    width:50%;
+    margin:auto;
+    /* background:teal; */
+     height:1120px;
+}
+
+.avatar{
+    display: flex;
+    width: 100%;
+    /* background-color: rgb(249, 130, 130); */
+    justify-content: space-between;
+    align-items: center;
+    padding:  20px;
+}
+.boxAv{
+    height: 150px;
+    width: 150px;
+    background: black;
+    border-radius: 200px;
+    overflow: hidden;
+    border: solid 1px black
+
+}
+#btn{
+    background-color: transparent;
+    border: SOLID 2px rgb(0, 124, 186);
+    padding: 5px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: yellow; */
+    padding: 0px 40px 15px 40px;
+    gap: 10px;
+    
+}
+.states{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+    /* background-color: #ffb013; */
+    margin: 0 auto;
+    border-bottom: solid 1px black;
+}
+
+.outbox:hover{
+    background-color: #f7f9fa;
+    transform: translateX(2px);
+}

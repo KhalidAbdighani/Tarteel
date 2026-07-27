@@ -1,0 +1,201 @@
+<div className="Cards">
+
+                            {/* add values to a card */}
+                                <div className="Card"> 
+                                    {paginatedcards.map (function(item){ return( 
+                                        
+                                        <Cards 
+                                        key={item.id}
+                                        reciterName={item.opname}
+                                        imgurl={item.opimage}
+                                        Surah={item.opSurah}
+                                        audiourl={item.opaudio}
+
+                                        cardPlaying={curentcard?.id=== item.id }
+                                        
+                                        onplay={()=>{
+                                            if(curentcard?.id !== item.id ){
+                                                if(audcontroller.current) { audcontroller.current.pause(); }
+                                                setisPlaying(false);
+                                                setcurentcard(item)
+                                                setused(false)
+                                                
+
+                                            } 
+
+                                        }
+                                            
+                                        }
+
+                                        
+                                        
+                                    
+                                    />
+                                    )}      )}
+                                    {recitationlist.length>0 &&( <div id="pagination-container" className="fixed-pagination">
+                                    <button onClick={()=>changePage(-1)}>Prev</button>
+                                    <span id="page-number">page {curentpage} of {totalpages}</span>
+                                    <button onClick={()=>changePage(1)}>Next</button>
+                                    </div>)}
+                                    
+                                   
+
+                                   
+                                    
+                                
+                                    
+                                </div>
+
+                                <div className="MainCard">
+                                        <div className="foto2">
+                                            {curentcard &&(
+                                                <img src={curentcard.opimage} alt="Reciter Image"></img>
+                                            )}
+                                        </div>
+
+                                        <div className="content2">
+                                            {curentcard &&(
+                                                <h3>{curentcard.opname}</h3>
+
+                                            )}
+                                                
+
+                                            
+                                            <p>Quraan reciter </p>
+                                            {curentcard&&(
+                                            <div className="Des"><h4>( Surah: {curentcard.opSurah} )</h4></div>
+
+
+                                            )}
+                                        </div>
+                                        
+                                            
+                                        <div className={`MainCardBox ${curentcard? "active":""}`}>
+                                            
+                                        <div className="manager1">
+                                        <div className="MainCardBoxContent">Quraan</div>
+                                        <button> <MdBarChart/></button>
+                                        </div>
+
+
+                                        <div className="manager2">
+                                            <div className={`MainCardSmallBox ${curentcard? "active":""}`} style={{display:"flex", flexDirection:"column"}}>
+                                            
+                                            {isPlaying&&(
+                                                <div>
+                                                       <div className={`playaudio`}  style={{display:"flex", alignItems:"center", gap:"4px", padding:"10px" ,justifyContent:"space-between", width:"50%"}}>
+                                            
+                                            <button style={{cursor:"pointer"}}> <TbPlayerTrackPrevFilled/></button>
+                                            <button onClick={play} style={{cursor:"pointer"}}> <FaPause/></button>
+                                            <button style={{cursor:"pointer"}}> <TbPlayerTrackNextFilled/></button>
+                                            </div>
+                                             
+                                             <input type='range' max={duration||0} value={nowTime}
+                                                    
+                                                    onChange={(e)=>{
+                                                        const newtime=Number(e.target.value)
+                                                        setNowTime(newtime)
+                                                        if(audcontroller.current){
+                                                            audcontroller.current.currentTime=newtime;
+                                                        }
+                                                        
+                                                        }} >
+                                                    
+                                                    
+                                                    </input>
+
+        
+                                    
+                                                </div>
+                                                
+                                             
+
+                                            )}
+
+                                            {!isPlaying&&(
+                                                 <div>
+                                                 
+                                                 <div style={{width:"100%", display:"flex", alignItems:"center" ,justifyContent:"center"}}>
+                                                
+                                            
+                                            
+                                            {!used &&(
+                                                <div className={`playaudio ${curentcard? "active":""}`} onClick={play} style={{display:"flex", alignItems:"center", gap:"6px", padding:"10px"}}>
+       
+                                              <button style={{pointerEvents:"none",padding:"0px",margin:"0px"}}> <TbPlayerPlayFilled/></button>
+                                              <h3 style={{pointerEvents:"none"}}>Play The Audio</h3>
+                                              </div>
+
+                                            )}
+                                            {used&&(
+                                                <div>
+                                                       <div className="playaudio"  style={{display:"flex", alignItems:"center", gap:"4px", padding:"10px", width:"50%",justifyContent:"space-between"}}>
+                                                <button style={{cursor:"pointer"}}> <TbPlayerTrackPrevFilled/></button>
+                                              <button onClick={play} style={{cursor:"pointer"}}> <TbPlayerPlayFilled/></button>
+                                              <button style={{cursor:"pointer"}}> <TbPlayerTrackNextFilled/></button>
+                                              </div>
+                                              <input type='range' max={duration||0} value={nowTime}
+                                                    
+                                                    onChange={(e)=>{
+                                                        const newtime=Number(e.target.value)
+                                                        setNowTime(newtime)
+                                                        if(audcontroller.current){
+                                                            audcontroller.current.currentTime=newtime;
+                                                        }
+                                                        
+                                                        }} >
+                                                    
+                                                    
+                                                    </input>
+                                                    
+                                                </div>
+                                              
+                                                
+                                                
+                                            )}
+
+                                           
+
+                                            </div>
+
+                                             
+
+
+                                                    </div>
+                                               
+
+
+                                            )}
+
+                                            
+
+                                            
+                                            {curentcard &&(
+                                                <audio
+                                            
+                                            ref={audcontroller}
+                                            src={curentcard.opaudio}
+                                            style={{display:"none"}}
+                                            onTimeUpdate={timer}
+                                            onLoadedData={durationHandler}
+                                            />
+
+                                            )}
+                                            
+                                            
+                                            </div>
+                                        </div>
+
+
+                                        </div>
+
+
+
+                                </div>
+                        </div>
+
+                    </div>
+
+        </div>
+        
+</div>
